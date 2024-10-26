@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()
+{
+    int num;
+    int resultado = 0;
+    printf("Introduce una secuencia de números terminada en cero: ");
+    scanf(" %d", &num);
+    
+    while (num != 0)
+    {
+        resultdo += num;
+        scanf(" %d", &num);
+    }
+    printf(" %d", resultado);
+}

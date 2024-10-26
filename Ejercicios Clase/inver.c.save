@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+void leer(int* num1)
+{
+    printf("Introduzca un numero >=0: ");
+    scanf(" %d", num1);
+}
+int separador(num1)
+{
+    int resultado = 0;
+    for (int i = num1; i >= 0; i++)
+    {
+        resultado = num1 % 10;
+        printf(" %d", resultado);
+        num1 /= 10;
+    }
+}
+
+int main()
+{
+    int num1;
+    leer(&num1);
+    if (num < 0)
+    {
+        printf("Error\n");
+    }
+    else
+    {
+        
+    }
+    
+}
