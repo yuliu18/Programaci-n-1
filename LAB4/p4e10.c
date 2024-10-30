@@ -2,14 +2,8 @@
 
 void leer(int* num)
 {
-    printf("Introduzca el numero de filas (menor de 10): ");
+    printf("Introduzca un numero: ");
     scanf(" %d", num);
-    while ((*num <= 0) || (*num > 10))
-    {
-        printf("Error. ");
-        printf("Introduzca el numero de filas (menor de 10): ");
-        scanf(" %d", num);
-    }
 }
 
 void imprimir_raya (int num)
@@ -27,17 +21,21 @@ void imprimir_espacio(int num)
     }
 }
 
-void imprimir_numeros(int fila)
-{
-    for (int i = 1; i <= fila; i++) {
-        printf("%d", i);
+void imprimir_numeros(int fila) {
+    int num = fila;
+    for (int i = 0; i < fila; i++) {
+        printf("%d", num % 10);
+        num = (num + 1) % 10;
     }
-    for (int i = fila - 1; i >= 1; i--) {
-        printf("%d", i);
+
+    num = (num - 2 + 10) % 10;
+
+    for (int i = 0; i < fila - 1; i++) {
+        printf("%d", num % 10);
+        num = (num - 1 + 10) % 10;
     }
     printf("\n");
 }
-
 void imprimir_triangulo(int num)
 {
     imprimir_raya(num);
@@ -55,3 +53,4 @@ int main()
     leer(&num);
     imprimir_triangulo(num);
 }
+
