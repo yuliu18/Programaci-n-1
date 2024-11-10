@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool secuencia_abc(char* c)
+bool secuencia_abc (char* c)
 {
     bool ok = false;
     if (*c == 'a')
@@ -17,10 +17,10 @@ bool secuencia_abc(char* c)
     return ok;
 }
 
-void mostrar(bool ok)
+void mostrar (bool ok)
 {
     if (ok)
-        printf("La secuencia 'abc' SÍ aparece en la frase de entrada\n");
+        printf("La secuencia 'abc' SI aparece en la frase de entrada\n");
     else
         printf("La secuencia 'abc' NO aparece en la frase de entrada\n");
 }
@@ -44,4 +44,3 @@ int main()
     char c;
     leer(&c);
 }
-

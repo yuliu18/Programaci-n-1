@@ -6,6 +6,7 @@ bool secuencia_zigzag(char* c)
     bool ok = true;
     char antes = *c;
     scanf(" %c", c);
+    bool condicion = (*c > antes);
     while (*c != '0' && ok)
     {
         if ((*c > antes) || (*c < antes))

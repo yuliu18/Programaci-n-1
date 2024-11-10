@@ -1,45 +1,43 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool secuencia_abc(char* c)
-{
+bool secuencia_abc(char* c) {
     bool ok = false;
-    if (*c == 'a')
-    {
+    if (*c == 'a') {
         scanf("%c", c);
-        if (*c == 'b')
-        {
+        if (*c == 'b') {
             scanf("%c", c);
-            if (*c == 'c')
+            if (*c == 'c') {
                 ok = true;
+            }
         }
     }
     return ok;
 }
 
-void mostrar(bool ok)
-{
+void mostrar(bool ok) {
     if (ok)
         printf("La secuencia 'abc' SÍ aparece en la frase de entrada\n");
     else
         printf("La secuencia 'abc' NO aparece en la frase de entrada\n");
 }
 
-void leer(char* c)
+void leer(char* c) 
 {
     bool ok = false;
-    printf("Introduzca el texto terminado en un punto: ");
+    printf("Introduzca el texto terminado en un punto:\n");
     scanf("%c", c);
-    while (*c != '.')
+    while (*c != '.') 
     {
-        if (!ok)
+        if (!ok) { // Solo sigue verificando si aún no se ha encontrado la secuencia
             ok = secuencia_abc(c);
-        scanf("%c", c);
+        }
+        scanf("%c", c); // Sigue leyendo caracteres hasta el punto
     }
     mostrar(ok);
 }
 
-int main()
+int main() 
 {
     char c;
     leer(&c);

@@ -4,10 +4,9 @@
 int main()
 {
     int n;
-    bool es_primo = num > 1;
-
     printf("Introduzca un numero: ");
     scanf(" %d", &n);
+    bool es_primo = n > 1;
 
     for (int i = 2; i <= n/2 && (es_primo); i++) // bucle for con final anticipado
     {
