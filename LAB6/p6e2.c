@@ -1,71 +1,46 @@
 #include <stdio.h>
 
 enum{
-    MAXALS = 20,
+    MAX = 5,
 };
 
-struct Estaturas
+void leer(int nelem, double nota[nelem])
 {
-    int nelms;
-    double list[MAXALS];
-};
-
-void leer_estatura(struct Estaturas* num)
-{
-    printf("Cuantas estaturas va a introducir (maximo 20): ");
-    scanf("%d", &num->nelms);
-    if((num->nelms < 0) || (num->nelms > MAXALS))
-    {
-        printf("Error\n");
-        num->nelms = 0;
-    }
-    else
-    {
-        printf("Introduzca las %d estaturas: ", num->nelms);
-        for (int i = 0; i < num->nelms; i++)
-        {
-            scanf("%lg", &num->list[i]);
-        }
-    }
+    printf("Introduzca 5 números: ");
+    for(int i = 0; i < nelem; i++)
+        scanf("%lg", &nota[i]);
 }
 
-double media(const struct Estaturas* num)
+double buscar_mayor(int nelms, const double lista[nelms])
 {
-    double suma_total = 0, media = 0;
-    for(int i = 0; i < num->nelms; i++)
-        suma_total += num->list[i];
-    media = suma_total/num->nelms;
-    return media;
+    double mayor = lista[0];
+    for(int i = 1; i < nelms; i++)
+    {
+        if(mayor < lista[i])
+            mayor = lista[i];
+    }
+    return mayor;
 }
 
-int masAltos(const struct Estaturas* alumnos, double media)
+void mostrar_lista(int nelms, const double lista[nelms])
 {
-    int count = 0;
-    for (int i = 0; i < alumnos->nelms; i++)
-    {
-        if (alumnos->list[i] > media)
-            count++;
-    }
-    return count;
+    printf("Lista: ");
+    for(int i = 0; i < nelms; i++)
+        printf("%lg ", lista[i]);
 }
 
-int masBajos(const struct Estaturas* alumnos, double media)
+void mostrar(double resultado)
 {
-    int count = 0;
-    for (int i = 0; i < alumnos->nelms; i++)
-    {
-        if (alumnos->list[i] < media)
-            count++;
-    }
-    return count;
+    printf("El mayor elemento de la lista es %lg\n", resultado);
+
 }
 
 int main()
 {
-    struct Estaturas estatu;
-    leer_estatura(&estatu);
-    double medias = media(&estatu);
-    printf("La media es: %lg\n", medias);
-    printf("Numero de alumnos mas altos que la media: %d\n", masAltos(&estatu, medias));
-    printf("Numero de alumnos mas bajos que la media: %d\n", masBajos(&estatu, medias));
+    double nota[MAX];
+    leer(MAX, nota);
+    double resultado = buscar_mayor(MAX, nota);
+    mostrar(resultado);
+    mostrar_lista(MAX, nota);
+
 }

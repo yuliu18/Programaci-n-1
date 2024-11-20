@@ -1,46 +1,33 @@
 #include <stdio.h>
-#include <stdbool.h>
 
 enum{
     MAX = 10,
 };
 
-void leer_num_abuscar(int* num)
+void leer_numeros(int frecuencia[])
 {
-    printf("Introduzca el numero a buscar: ");
-    scanf("%d", num);
-}
-
-void leer(int nelms, int lista[nelms])
-{
-    printf("Introduzca 10 numeros enteros: ");
-    for (int i = 0; i < nelms; i++)
-        scanf(" %d", &lista[i]);
-}
-
-bool buscar(int lista[], int num)
-{
-    int i = 0;
-    while(lista[i] != num)
+    int num;
+    printf("Introduzca una secuencia de números (hasta negativo): ");
+    scanf("%d", &num);
+    while(num >= 0)
     {
-        i++;
+        if (num >= 0 && num <= 9)
+            frecuencia[num]++;
+        scanf("%d", &num);
     }
-    return i;
 }
 
-void resultado_busqueda(int num, int i, int lista[])
+void mostrarFrecuencia(const int frecuencia[])
 {
-    if (lista[i] == num)
-        printf("El numero %d SI esta en la coleccion, en la posicion: %d", num, i);
-    else
-        printf("El numero %d NO esta en la coleccion, en la posicion: %d", num, i);
+    printf("La frecuencia de cada dígito es:\n");
+    for (int i = 0; i < MAX; i++)
+        printf("%d:%d\n", i, frecuencia[i]);
 }
 
 int main()
 {
-    int lista[MAX];
-    int num;
-    leer_num_abuscar(&num);
-    leer(MAX, lista);
-    resultado_busqueda(num, buscar(lista, num), lista);
+    int frecuencia[MAX] = {0};
+    leer_numeros(frecuencia);
+    mostrarFrecuencia(frecuencia);
+
 }

@@ -1,35 +1,71 @@
 #include <stdio.h>
 
 enum{
-    MAX = 10,
+    MAXALS = 20,
 };
 
-void leer_numeros(int frecuencia[])
+struct Estaturas
 {
-    int num;
-    printf("Introduzca una secuencia de números (hasta negativo): ");
-    scanf("%d", &num);
-    while(num >= 0)
+    int nelms;
+    double list[MAXALS];
+};
+
+void leer_estatura(struct Estaturas* num)
+{
+    printf("Cuantas estaturas va a introducir (maximo 20): ");
+    scanf("%d", &num->nelms);
+    if((num->nelms < 0) || (num->nelms > MAXALS))
     {
-        if (num >= 0 && num <= 9)
-            frecuencia[num]++;
-        else
-            printf("Número inválido (%d). Por favor, introduzca números entre 0 y 9.\n", num);
-        scanf("%d", &num);
+        printf("Error\n");
+        num->nelms = 0;
+    }
+    else
+    {
+        printf("Introduzca las %d estaturas: ", num->nelms);
+        for (int i = 0; i < num->nelms; i++)
+        {
+            scanf("%lg", &num->list[i]);
+        }
     }
 }
 
-void mostrarFrecuencia(const int frecuencia[])
+double media(const struct Estaturas* num)
 {
-    printf("La frecuencia de cada dígito es:\n");
-    for (int i = 0; i < MAX; i++)
-        printf("%d:%d\n", i, frecuencia[i]);
+    double suma_total = 0, media = 0;
+    for(int i = 0; i < num->nelms; i++)
+        suma_total += num->list[i];
+    media = suma_total/num->nelms;
+    return media;
+}
+
+int masAltos(const struct Estaturas* alumnos, double media)
+{
+    int count = 0;
+    for (int i = 0; i < alumnos->nelms; i++)
+    {
+        if (alumnos->list[i] > media)
+            count++;
+    }
+    return count;
+}
+
+int masBajos(const struct Estaturas* alumnos, double media)
+{
+    int count = 0;
+    for (int i = 0; i < alumnos->nelms; i++)
+    {
+        if (alumnos->list[i] < media)
+            count++;
+    }
+    return count;
 }
 
 int main()
 {
-    int frecuencia[10] = {0};
-    leer_numeros(frecuencia);
-    mostrarFrecuencia(frecuencia);
-
+    struct Estaturas estatu;
+    leer_estatura(&estatu);
+    double medias = media(&estatu);
+    printf("La media es: %lg\n", medias);
+    printf("Numero de alumnos mas altos que la media: %d\n", masAltos(&estatu, medias));
+    printf("Numero de alumnos mas bajos que la media: %d\n", masBajos(&estatu, medias));
 }
