@@ -45,6 +45,13 @@ int resultado(const struct NUM* n, double media)
     return resultado;
 }
 
+void liberar(struct NUM* n)
+{
+    free(n->elm);
+    n->cantidad = 0;
+    n->elm = NULL;
+}
+
 int main()
 {
     struct NUM n;
@@ -52,4 +59,5 @@ int main()
     double media = calc_media(&n);
     int result = resultado(&n, media);
     printf("Resultado: %d", result);
+    liberar(&n);
 }

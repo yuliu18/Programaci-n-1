@@ -11,7 +11,7 @@ void inic_lista(struct Datos* dts)
 {
     dts->capacidad = 4;
     dts->nelms = 0;
-    dts->elm = calloc(lista->capacidad,sizeof(double));
+    dts->elm = calloc(dts->capacidad,sizeof(double));
 }
 
 void anyadir_valor(double valor, struct Datos* dts)
